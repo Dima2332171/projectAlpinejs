@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Over+the+Rainbow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/icons/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/icons/css/brands.css">
+    <link rel="stylesheet" href="assets/icons/css/solid.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Document</title>
+</head>
+<body class="dark:bg-darkTheme dark:text-colorDark bg-lightTheme text-2xl">
+<header>
+    <div class="container mx-auto flex justify-between p-5">
+        <h2 class="text-8xl font-rainbow">Oli</h2>
+        <div class="flex space-x-10" x-data="{open:false}">
+            <div class="my-auto space-x-10">
+                <a href="./index.html" class="hover:underline">Main</a>
+                <a href="" class="hover:underline">Courses</a>
+                <a href="" class="hover:underline">About Us</a>
+                <button href="" class="bg-red-600 py-2 px-8 rounded-full text-white hover:bg-red-700" @click="open = true">Contacts</button>
+            </div>
+            <div class="text-xl" x-show="open" @click.outside="open = false">
+                <p><a href="tel: +38 (097) 455-55-77" class="hover:underline">+38 (097) 455-55-77</a></p>
+                <p><a href="tel: +38 (093) 455-55-77" class="hover:underline">+38 (093) 455-55-77</a></p>
+                <p><a href="tel: +38 (063) 455-55-77" class="hover:underline">+38 (063) 455-55-77</a></p>
+            </div>
+            <button x-data @click="$store.darkMode.toggle()"><i class="fa-solid fa-sun"></i></button>
+            <div x-data x-text="$store.darkMode.dark"></div>
+        </div>
+    </div>
+    <hr>
+</header>
+
+
+<main class="container mx-auto" x-data="{
+    search:'',
+    items: [
+    {
+        title:'Oil painting',
+        img: 'assets/image/1.JPG',
+    },
+    {
+        title:'Watercolor',
+        img: 'assets/image/2.JPG',
+    },
+    {
+        title:'Glass painting',
+        img: 'assets/image/3.JPG',
+    },
+    {
+        title:'Decoupage',
+        img: 'assets/image/4.JPG',
+    },
+    {
+        title:'Mosaic',
+        img: 'assets/image/5.JPG',
+    },
+    {
+        title:'Sketching',
+        img: 'assets/image/6.JPG',
+    },
+    {
+        title:'Coffee grisaille',
+        img: 'assets/image/7.JPG'
+     }
+    ],
+    myForData: this.items,
+    get filteredItems() {
+        return this.items.filter(
+            item => item.title.toLowerCase().includes(this.search.toLowerCase())
+        )
+    }
+}">
+    <div>
+        <div class="text-center">
+            <h1>Search Panel</h1>
+            <input type="text" class="w-1/2 h-10 p-2 rounded-full" x-model="search">
+        </div>
+        
+        <div class="text-black">
+            <template x-for="item in filteredItems">
+            <div class="flex bg-colorGrey my-4 mx-4 py-3 px-3 border-solid border-gray-300 border-2 rounded-lg">
+                <div class="pt-base">
+                    <img class="h-36 w-64 rounded-full" :src="`${item.img}`" alt="">
+                </div>
+                <div class="pt-base px-4">
+                <h2 class="text-4xl first-letter:text-5xl first-letter:font-medium" x-text="item.title" ></h2>
+                <p class="py-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores blanditiis, commodi dicta fuga illum in minus nobis officiis quod recusandae, repellat rerum tenetur voluptatem voluptatum? A ab molestias optio.</p>
+                    <a href="" class="bg-red-600 py-2 px-8 mb-1.5 rounded-full text-white hover:bg-red-700">Join to Us</a>
+                </div>
+            </div>
+            </template>
+        </div>
+    </div>
+</main>
+<hr>
+
+<footer class="my-12 px-12">
+    <div class="container mx-auto flex justify-between">
+        <div class="space-x-10">
+            <a href="" class="hover:underline">Terms</a>
+            <a href="" class="hover:underline">Privacy policy</a>
+            <a href="" class="hover:underline">Cookie settings</a>
+        </div>
+        <div class="space-x-7">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
